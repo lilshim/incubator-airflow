@@ -434,12 +434,11 @@ class DagBag(LoggingMixin):
             'dagbag_import_errors', len(self.import_errors), 1)
         self.dagbag_stats = sorted(
             stats, key=lambda x: x.duration, reverse=True)
-        logging.debug(self.dagbag_report())
 
     def dagbag_report(self):
         report = textwrap.dedent("""\n
         -------------------------------------------------------------------
-        DagBag laoding stats for {dag_folder}
+        DagBag loading stats for {dag_folder}
         -------------------------------------------------------------------
         Number of DAGs: {dag_num}
         Total task number: {task_num}
