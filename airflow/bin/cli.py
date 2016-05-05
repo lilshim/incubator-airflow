@@ -324,10 +324,14 @@ def task_state(args):
 
 def list_dags(args):
     dagbag = DagBag(process_subdir(args.subdir))
-    print("-" * 60)
-    print("DAGS")
-    print("-" * 60)
-    print("\n".join(sorted(dagbag.dags)))
+    s = textwrap.dedent("""\n
+    -------------------------------------------------------------------
+    DAGS
+    -------------------------------------------------------------------
+    {dag_list}
+    """)
+    dag_list = "\n".join(sorted(dagbag.dags))
+    print(s.format(dag_list=dag_list))
     if args.report:
         print(dagbag.dagbag_report())
 
@@ -682,7 +686,7 @@ class CLIFactory(object):
         'tree': Arg(("-t", "--tree"), "Tree view", "store_true"),
         # list_dags
         'report': Arg(
-            ("-st", "--report"), "Show DagBag loading report", "store_true"),
+            ("-r", "--report"), "Show DagBag loading report", "store_true"),
         # clear
         'upstream': Arg(
             ("-u", "--upstream"), "Include upstream tasks", "store_true"),

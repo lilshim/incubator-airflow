@@ -436,6 +436,7 @@ class DagBag(LoggingMixin):
             stats, key=lambda x: x.duration, reverse=True)
 
     def dagbag_report(self):
+        """Prints a report around DagBag loading stats"""
         report = textwrap.dedent("""\n
         -------------------------------------------------------------------
         DagBag loading stats for {dag_folder}
