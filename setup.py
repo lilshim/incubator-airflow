@@ -1,11 +1,14 @@
 from setuptools import setup, find_packages, Command
 from setuptools.command.test import test as TestCommand
 
+import imp
+import logging
 import os
 import sys
 
 # Kept manually in sync with airflow.__version__
-version = '1.7.1.3'
+version = imp.load_source(
+    'version', os.path.join('airflow', 'version.py')).version
 
 
 class Tox(TestCommand):
