@@ -48,7 +48,7 @@ def GetDefaultExecutor():
     DEFAULT_EXECUTOR = _get_executor(executor_name)
 
     log = LoggingMixin().log
-    log.info("Using executor %s", executor_name)
+    log.debug("Using executor %s", executor_name)
 
     return DEFAULT_EXECUTOR
 

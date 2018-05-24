@@ -7,9 +7,9 @@
 # to you under the Apache License, Version 2.0 (the
 # "License"); you may not use this file except in compliance
 # with the License.  You may obtain a copy of the License at
-# 
+#
 #   http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing,
 # software distributed under the License is distributed on an
 # "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -43,7 +43,9 @@ def upgrade():
         cur = conn.execute("SELECT @@explicit_defaults_for_timestamp")
         res = cur.fetchall()
         if res[0][0] == 0:
-            raise Exception("Global variable explicit_defaults_for_timestamp needs to be on (1) for mysql")
+            raise Exception(
+                "Airflow requires that setting MySQL to "
+                "explicit_defaults_for_timestamp=1 . Update your my.cnf!")
 
         op.alter_column(table_name='chart', column_name='last_modified', type_=mysql.TIMESTAMP(fsp=6))
 

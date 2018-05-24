@@ -18,17 +18,9 @@
 # under the License.
 
 import airflow
-import logging
 from airflow.models import DAG
 
-try:
-    # Kubernetes is optional, so not available in vanilla Airflow
-    # pip install airflow[gcp]
-    from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
-except ImportError:
-    # Just import the BaseOperator as the KubernetesPodOperator
-    logging.warn("Could not import KubernetesPodOperator")
-    from airflow.models import BaseOperator as KubernetesPodOperator
+from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
 
 args = {
     'owner': 'airflow',
