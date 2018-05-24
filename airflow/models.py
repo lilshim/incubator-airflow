@@ -4909,7 +4909,8 @@ class DagRun(Base, LoggingMixin):
 
         tis = self.get_task_instances(session=session)
 
-        self.log.info("Updating state for %s considering %s task(s)", self, len(tis))
+        self.log.debug(
+            "Checking DagRun state for %s considering %s task(s)", self, len(tis))
 
         for ti in list(tis):
             # skip in db?
